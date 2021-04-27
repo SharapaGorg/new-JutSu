@@ -3,10 +3,15 @@
 //CD5C5C
 //B0C0B2 - green
 $primary: #515b3b;
+$background: #1f1f1f;
 
-$primary-light: findLightColor($primary);
-$primary-dark: findDarkColor($primary);
-$primary-invert: findColorInvert($primary);
+$background-light: findLightColor($primary);
+$background-dark: findDarkColor($primary);
+$background-invert: findColorInvert($primary);
+
+$primary-light: findLightColor($background);
+$primary-dark: findDarkColor($background);
+$primary-invert: findColorInvert($background);
 
 // Lists and maps
 $custom-colors: null !default;
@@ -36,6 +41,12 @@ $colors: mergeColorMaps(
         $primary-invert,
         $primary-light,
         $primary-dark,
+      ),
+      "background": (
+        $background,
+        $background-invert,
+        $background-light,
+        $background-dark
       ),
       "link": (
         $link,
