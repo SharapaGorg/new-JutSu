@@ -7,8 +7,17 @@
       <b-switch v-model="isSwitchedCustom"
                 true-value="Войти на сайт"
                 false-value="Шакалить">
-        {{ isSwitchedCustom }}
+        {{ isSwitchedCustom ? 'Войти на сайт' : 'Шакалить' }}
       </b-switch>
+
+      <b-modal v-model = "isSwitchedCustom" v-if = "isSwitchedCustom !== 'Шакалить'">
+
+        <div class = "box">
+          OK
+        </div>
+
+      </b-modal>
+
     </div>
     <div class = "box secondary_back" style = "position: relative; bottom : 35px; z-index : 0">
       OK
@@ -38,12 +47,16 @@ export default {
   data() {
     return {
       selected : '',
-      isSwitchedCustom: 'Шакалить',
+      isSwitchedCustom: "Шакалить",
+      isSwitched: 'ok',
       anime_list : ['Моя геройская академия', 'Магическая битва', 'Атака Титанов', 'Тёмный дворецкий'].sort()
     }
   },
   components: {
     Search
+  },
+  methods: {
+
   }
 }
 </script>
