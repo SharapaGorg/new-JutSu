@@ -7,7 +7,7 @@
 
       <br/>
       <b-button style="float : right; bottom : 7px" type="is-success">Найти</b-button>
-      <b-field>
+      <b-field style = "color: #bee6c3">
         <b-switch v-model="isSwitchedCustom"
                   true-value="Войти на сайт"
                   false-value="Шакалить">
@@ -43,7 +43,8 @@
     </div>
     <div class="box secondary_back" style="position: relative; bottom : 35px; z-index : 0"
          :style="{ 'max-width' : this.contentWidth }"><br>
-      <div v-for="preview in previews" :key="preview.title" class="anime_item">
+
+      <div v-for="preview in previews" :key="preview.title" class="anime_item" :style = "{ 'float' : preview.float }">
         <VideoPreview :url="preview.url" :title="preview.title" :redirect-page="preview.redirectPage"
                       :time-code="preview.timeCode"/>
       </div>
@@ -55,7 +56,7 @@
 
 .primary_back {
   background: #515b3b !important;
-  color: white
+  color: white;
 }
 
 .secondary_back {
@@ -63,7 +64,7 @@
 }
 
 .anime_item {
-  width: 280px
+  width: 280px;
 }
 </style>
 
@@ -83,18 +84,48 @@ export default {
       contentWidth: "",
       anime_list: ['Моя геройская академия', 'Магическая битва', 'Атака Титанов', 'Тёмный дворецкий'].sort(),
       previews: {
-        magicFight: {
-          url: "https://gen.jut.su/uploads/animethumbs/anime_jujutsu-kaisen.jpg",
-          title: "Магическая битва",
-          timeCode: "3 серия",
-          redirectPage: "/",
-        },
         sevens: {
           url: "https://gen.jut.su/uploads/animethumbs/anime_nanatsu-no-taizai.jpg",
           title: "Семь смертных грехов",
           timeCode: "16 серия (4 сезон)",
           redirectPage: "/",
-        }
+          float : "right"
+        },
+        magicFight: {
+          url: "https://gen.jut.su/uploads/animethumbs/anime_jujutsu-kaisen.jpg",
+          title: "Магическая битва",
+          timeCode: "3 серия",
+          redirectPage: "/",
+          float : "auto"
+        },
+        onePunchMan: {
+          url : "https://gen.jut.su/uploads/animethumbs/anime_one-punch-man.jpg",
+          title: "Ванпанчмен",
+          timeCode: "9 серия (2 сезон)",
+          redirectPage: "/",
+          float: "right"
+        },
+        heroShield: {
+          url: "https://gen.jut.su/uploads/animethumbs/anime_tate-yuusha-nariagari.jpg",
+          title: "Восхождение героя щита",
+          timeCode: "14 серия",
+          redirectPage: "/",
+          float: "auto"
+        },
+        futureDiary: {
+          url : "https://gen.jut.su/uploads/animethumbs/anime_mirai-nikki.jpg",
+          title : "Дневник будущего",
+          timeCode : "19 серия",
+          redirectPage : "/",
+          float : "right"
+        },
+        darkButler: {
+          url : "https://gen.jut.su/uploads/animethumbs/anime_kuroshitsuji.jpg",
+          title : "Тёмный дворецкий",
+          timeCode : "5 серия (3 сезон)",
+          redirectPage : "/",
+          float : "auto"
+        },
       }
     }
   },
@@ -110,6 +141,8 @@ export default {
       // window.$nuxt.$router.push('/') NO
       // check for req ans, if success :
       this.isSwitchedCustom = "Шакалить"
+      this.loginEmail = ""
+      this.pwd = ""
     }
   },
   computed: {
