@@ -1,6 +1,7 @@
 <template>
-  <nuxt-link :to = "redirectPage">
-    <div>
+  <div style = "width: 280px; height : 100px">
+
+    <nuxt-link :to="redirectPage">
       <b-image
         class='anime_image'
         :src="url"
@@ -8,12 +9,13 @@
         ratio="0.5by0.5"
         rounded
       ></b-image>
-      <div class="box anime_title">
+      <div class="box anime_title rounded-3xl">
         <span class='main_title'>&nbsp;{{ title }}</span>
         <span class='sub_title'>&nbsp;{{ timeCode }}</span>
       </div>
-    </div>
-  </nuxt-link>
+    </nuxt-link>
+
+  </div>
 </template>
 
 <script>

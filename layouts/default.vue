@@ -18,9 +18,11 @@
       </div>
     </nav>
 
-    <section class="main-content columns"
-             :style="{'background-image': 'url(' + require('../assets/background_main.dark.jpg') + ')' }">
-      <div class="container column is-6 min-h-screen" style="background : transparent">
+    <!-- :style="{'background-image': 'url(' + require('../assets/background_main.dark.jpg') + ')' }" -->
+
+    <section class="main-content columns content-container"
+             >
+      <div class="container column is-6 min-h-screen">
         <br/><br/><br/><br/><br/>
         <nuxt/>
       </div>
@@ -51,14 +53,26 @@
   }
 }
 
+.content-container {
+  background: url(../assets/background_main.dark.jpg) no-repeat top, center;
+}
+
+body {
+  background: #1f1f1f;
+}
+
 </style>
 
 <script>
+
 export default {
   name: 'HomePage',
   data() {
     return {
-      prefix: "col-start-",
+      contentContainer: {
+        backgroundRepeat: "no-repeat",
+        background: "url(../assets/background_main.dark.jpg)"
+      },
       dropdowns: {
         types: {
           id: 0,
