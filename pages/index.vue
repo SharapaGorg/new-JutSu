@@ -12,20 +12,8 @@
 
 <style>
 
-.primary_back {
-  background: #515b3b !important;
-  color: white;
-}
-
 .secondary_back {
   background: #1f1f1f !important;
-}
-
-div.index-header {
-  position: relative;
-  align-items: center;
-  z-index: 1;
-  margin: auto;
 }
 
 div.index-content {

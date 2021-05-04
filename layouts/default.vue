@@ -80,6 +80,12 @@
   }
 }
 
+.primary_back {
+  background: #515b3b !important;
+  color: white;
+}
+
+
 .content-container {
   background: url(../assets/background_main.dark.jpg) no-repeat top, center;
 }
@@ -93,6 +99,13 @@
 
 body {
   background: #1f1f1f;
+}
+
+div.index-header {
+  position: relative;
+  align-items: center;
+  z-index: 1;
+  margin: auto;
 }
 
 </style>
