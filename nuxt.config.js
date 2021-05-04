@@ -42,6 +42,11 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    babel:{
+      plugins: [
+        ['@babel/plugin-proposal-private-methods', { loose: true }]
+      ]
+    }
   },
   buefy: {
     materialDesignIcons: true
@@ -49,4 +54,8 @@ export default {
   tailwindcss: {
     jit: true
   },
+  server: {
+    host : "192.168.1.47",
+    port : "8080"
+  }
 }

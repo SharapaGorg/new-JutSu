@@ -107,4 +107,80 @@ export default {
 
   components: {}
 }
+
+import * as THREE from "three/build/three.module.js"
+import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
+// import {DRACOLoader} from 'three/examples/jsm/loaders/DRACOLoader.js';
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xdddddd );
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
+
+const renderer = new THREE.WebGLRenderer({antialias:true});
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+let hlight = new THREE.AmbientLight (0x404040,100);
+scene.add(hlight);
+let directionalLight = new THREE.DirectionalLight(0xffffff,100);
+directionalLight.position.set(0,1,0);
+directionalLight.castShadow = true;
+scene.add(directionalLight);
+let light = new THREE.PointLight(0xc4c4c4,10);
+light.position.set(0,300,500);
+scene.add(light);
+let light2 = new THREE.PointLight(0xc4c4c4,10);
+light2.position.set(500,100,0);
+scene.add(light2);
+let light3 = new THREE.PointLight(0xc4c4c4,10);
+light3.position.set(0,100,-500);
+scene.add(light3);
+let light4 = new THREE.PointLight(0xc4c4c4,10);
+light4.position.set(-500,300,500);
+scene.add(light4);
+
+// const geometry = new THREE.BoxGeometry();
+// const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+// const cube = new THREE.Mesh( geometry, material );
+// scene.add( cube );
+const loader = new GLTFLoader();
+//http://192.168.1.47:8080/room.glb
+loader.load('http://192.168.1.47:8080/room.glb', function (gltf) {
+
+    scene.add(gltf.scene);
+    console.log("Scene adding completed [+]");
+    console.log(gltf.scene.children[0]);
+
+    console.log(gltf.animations); // Array<THREE.AnimationClip>
+    console.log(gltf.scene); // THREE.Group
+    console.log(gltf.scenes); // Array<THREE.Group>
+    console.log(gltf.cameras); // Array<THREE.Camera>
+    console.log(gltf.asset); // Object
+
+  },
+  function (xhr) {
+
+    console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+
+  }, function (error) {
+
+    console.error(error);
+
+  });
+renderer.outputEncoding = THREE.sRGBEncoding;
+camera.position.x = 0;
+camera.position.y = 100;
+camera.position.z = 1000;
+
+const animate = function () {
+  requestAnimationFrame(animate);
+
+  scene.rotation.y += 0.05;
+
+  renderer.render(scene, camera);
+};
+
+animate();
+
 </script>
+
