@@ -23,6 +23,35 @@
         <br/>
         <div class='logo-container' id="logo"></div>
         <br/>
+        <div class="box primary_back index-header" :style="{ 'max-width' : this.contentWidth }">
+          <search :list=anime_list placeholder="e.g. Тёмный дворецкий" class="col-start-2"/>
+          <br/>
+          <b-button style="float : right; bottom : 7px" type="is-success">Найти</b-button>
+          <b-field style="color: #bee6c3">
+            <b-switch v-model="isSwitchedCustom"
+                      true-value="Войти на сайт"
+                      false-value="Шакалить">
+              {{ isSwitchedCustom ? 'Войти на сайт' : 'Шакалить' }}
+            </b-switch>
+          </b-field>
+          <b-modal v-model='isSwitchedCustom' v-if="isSwitchedCustom !== 'Шакалить'" has-modal-card aria-role="dialog"
+                   aria-modal :destroy-on-hide="false" trap-focus aria-label="Example Modal">
+            <center>
+              <div class="box secondary_back" style="width: 300px">
+                <b-field>
+                  <b-input placeholder="Логин или email" v-model="loginEmail">
+                  </b-input>
+                </b-field>
+                <b-field :type="{ 'is-warning' : secondFieldCheck }">
+                  <b-input placeholder="Пароль" type="password" v-model="pwd">
+                  </b-input>
+                </b-field>
+                <b-button :loading="this.isSwitched" @click="userLogIn" class="is-primary" style="width: 85%">Вход
+                </b-button>
+              </div>
+            </center>
+          </b-modal>
+        </div>
         <nuxt/>
       </div>
     </section>
@@ -70,6 +99,7 @@ body {
 
 <script>
 
+import Search from "../components/search.vue"
 import * as THREE from "three/build/three.module.js"
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
 
@@ -77,6 +107,7 @@ const WIDTH = 330;
 const HEIGHT = 80;
 
 let scene = new THREE.Scene();
+scene.background = new THREE.Color(0x1f1f1f);
 
 function load(loader) {
   loader.load('http://192.168.1.47:8080/logo.glb', function (gltf) {
@@ -151,6 +182,12 @@ export default {
           values: []
         }
       },
+      isSwitchedCustom: "Шакалить",
+      isSwitched: false,
+      loginEmail: "",
+      pwd: "",
+      contentWidth: "",
+      anime_list: ['Моя геройская академия', 'Магическая битва', 'Атака Титанов', 'Тёмный дворецкий', 'Семь смертных грехов', 'Восхождение героя щита', 'Дневник будущего'].sort(),
       camera: null,
       scene: new THREE.Scene(),
       renderer: new THREE.WebGLRenderer(
@@ -158,11 +195,27 @@ export default {
       )
     }
   },
-  methods: {},
+  computed: {
+    secondFieldCheck() {
+      return (this.pwd.length < 9 && this.pwd !== "")
+    }
+  },
+  methods: {
+    userLogIn() {
+      this.isSwitched = true;
+      // back end req
+      this.isSwitched = false;
+      // window.$nuxt.$router.push('/') NO
+      // check for req ans, if success :
+      this.isSwitchedCustom = "Шакалить"
+      this.loginEmail = ""
+      this.pwd = ""
+    }
+  },
   mounted() {
+    this.contentWidth = (window.innerWidth - 980).toString() + "px";
     let container = document.getElementById("logo");
 
-    scene.background = new THREE.Color(0x1f1f1f);
     const camera = new THREE.PerspectiveCamera(8, WIDTH / HEIGHT, 0.1, 2000);
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(WIDTH, HEIGHT);
@@ -194,7 +247,9 @@ export default {
     animate();
   },
 
-  components: {}
+  components: {
+    Search
+  }
 }
 
 </script>
