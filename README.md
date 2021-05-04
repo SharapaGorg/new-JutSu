@@ -10,6 +10,9 @@
 
 ```https://threejs.org/docs/index.html#examples/en/loaders/GLTFLoader```
 
+
+```https://stackoverflow.com/questions/64233846/unexpected-token-in-json-at-position-0-gltfloader-in-three-js-and-vue-app```
+
 # Dev commands
 
 ```yarn install``` ```yarn dev``` ```yarn build``` ```yarn start```
