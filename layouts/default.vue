@@ -85,7 +85,6 @@
   color: white;
 }
 
-
 .content-container {
   background: url(../assets/background_main.dark.jpg) no-repeat top, center;
 }
