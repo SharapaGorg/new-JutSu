@@ -122,7 +122,7 @@ let scene = new THREE.Scene();
 scene.background = new THREE.Color(0x1f1f1f);
 
 function load(loader) {
-  loader.load('http://192.168.1.47:8080/logo.glb', function (gltf) {
+  loader.load('http://localhost:3000/logo.glb', function (gltf) {
       scene.add(gltf.scene);
     },
     function (xhr) {
@@ -225,7 +225,7 @@ export default {
     }
   },
   mounted() {
-    this.contentWidth = (window.innerWidth - 980).toString() + "px";
+    this.contentWidth = (window.innerWidth).toString() + "px";
     let container = document.getElementById("logo");
 
     const camera = new THREE.PerspectiveCamera(8, WIDTH / HEIGHT, 0.1, 2000);

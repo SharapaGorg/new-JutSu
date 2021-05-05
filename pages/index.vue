@@ -95,6 +95,9 @@ export default {
     previewFloatControl() {
       return window.innerWidth < 630;
     }
+  },
+  mounted() {
+    this.contentWidth = (window.innerWidth).toString() + "px";
   }
 
 }

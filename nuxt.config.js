@@ -54,8 +54,8 @@ export default {
   tailwindcss: {
     jit: true
   },
-  server: {
-    host : "192.168.1.47",
-    port : "8080"
-  }
+  // server: {
+  //   host : "192.168.1.47",
+  //   port : "8080"
+  // }
 }
